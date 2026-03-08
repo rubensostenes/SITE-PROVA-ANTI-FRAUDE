@@ -1,0 +1,38 @@
+# Configuração do Netlify para Prova Online
+
+[build]
+  # Não há build necessário para HTML/CSS/JS puro
+  publish = "."
+  command = ""
+
+# Redirecionar 404s para index.html para SPA (não necessário aqui)
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# Headers de segurança
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "geolocation=(), microphone=(), camera=()"
+
+# Cache
+[[headers]]
+  for = "*.js"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "*.css"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "index.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"

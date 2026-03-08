@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="logo.png" type="image/png">
+  <title>Prova Área 61</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+<section id="heroScreen" class="hero-section">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+        <h1 class="main-title">A VIDA DO PROFETA ELIAS</h1>
+        <p class="sub-title">SIMPÓSIO DE DOUTRINAS BÍBLICAS</p>
+        
+        <button class="btn-torch" onclick="iniciarExperiencia()">
+            INICIAR
+        </button>
+
+        <button id="adminBtnCapa" class="btn-admin-capa" onclick="openAdminLogin()">
+            <i class="fas fa-user-shield"></i>
+        </button>
+    </div>
+</section>
+
+<main id="appContent" class="hidden">
+    </main>
+  
+  <div class="app-container">
+    <!-- TELA DE ENTRADA -->
+    <div id="entryScreen" class="screen active">
+      <div class="entry-container">
+        <!-- Header -->
+        <div class="entry-header">
+          <div class="header-logo">
+            <i class="fas fa-graduation-cap"></i>
+            <h1>Prova Área 61</h1>
+          </div>
+          <p class="header-subtitle">Prova Simpósio de Doutrinas Bíblicas - Área 61</p>
+        </div>
+
+        <!-- Admin Button (Top Right) -->
+        <button id="adminBtnEntry" class="admin-button-top">
+          <i class="fas fa-user-shield"></i> Admin
+        </button>
+
+        <!-- Status Alert -->
+        <div id="statusAlert" class="alert alert-warning" style="display: none;">
+          <i class="fas fa-info-circle"></i>
+          <span id="statusText">A prova ainda não foi liberada. Aguarde a liberação do administrador.</span>
+        </div>
+
+        <!-- Tabs -->
+        <div class="tabs-container">
+          <div class="tabs-header">
+            <button class="tab-btn active" data-tab="register">
+              <i class="fas fa-user-plus"></i> Novo Cadastro
+            </button>
+            <button class="tab-btn" data-tab="login">
+              <i class="fas fa-sign-in-alt"></i> Entrar
+            </button>
+          </div>
+
+          <!-- Register Tab -->
+          <div id="registerTab" class="tab-content active">
+            <form id="registerForm" class="form-container">
+              <div class="form-row">
+                <div class="form-group full">
+                  <label for="regName">Nome Completo *</label>
+                  <input type="text" id="regName" required placeholder="Seu nome completo">
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="regCPF">CPF *</label>
+                  <input type="text" id="regCPF" required placeholder="000.000.000-00" inputmode="numeric">
+                </div>
+                <div class="form-group">
+                  <label for="regBirthDate">Data de Nascimento *</label>
+                  <input type="date" id="regBirthDate" required>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group full">
+                  <label for="regBaptized">Batizado? *</label>
+                  <select id="regBaptized" required>
+                    <option value="">Selecione</option>
+                    <option value="sim">Sim</option>
+                    <option value="nao">Não</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group full">
+                  <label for="regCongregation">Congregação *</label>
+                  <select id="regCongregation" required>
+                    <option value="">Selecione</option>
+                    <option value="Comportas">Comportas</option>
+                    <option value="Lagoa 1">Lagoa 1</option>
+                    <option value="Lagoa 2">Lagoa 2</option>
+                    <option value="Engenho">Engenho</option>
+                    <option value="Alto do Céu">Alto do Céu</option>
+                    <option value="Acaraú">Acaraú</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group full">
+                  <label for="regResp1">Parente Responsável *</label>
+                  <input type="text" id="regResp1" required placeholder="Nome do responsável">
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group full">
+                  <label for="regResp2">Parente Responsável 2 (opcional)</label>
+                  <input type="text" id="regResp2" placeholder="Nome do segundo responsável">
+                </div>
+              </div>
+
+              <div id="registerMsg" class="message-box"></div>
+
+              <button type="submit" class="btn btn-primary btn-large">
+                <i class="fas fa-play"></i> Cadastrar
+              </button>
+
+              <div class="security-hint">
+                <i class="fas fa-lock"></i>
+                <span>Sair da aba/janela encerra a prova automaticamente</span>
+              </div>
+            </form>
+          </div>
+
+          <!-- Login Tab -->
+          <div id="loginTab" class="tab-content">
+            <form id="loginForm" class="form-container">
+              <div class="form-row">
+                <div class="form-group full">
+                  <label for="loginCPF">CPF *</label>
+                  <input type="text" id="loginCPF" required placeholder="000.000.000-00" inputmode="numeric">
+                </div>
+              </div>
+
+              <p class="form-hint">Digite seu CPF para acessar a prova</p>
+
+              <div id="loginMsg" class="message-box"></div>
+
+              <button type="submit" class="btn btn-primary btn-large">
+                <i class="fas fa-sign-in-alt"></i> Entrar na Prova
+              </button>
+
+              <div class="security-hint">
+                <i class="fas fa-lock"></i>
+                <span>Sair da aba/janela encerra a prova automaticamente</span>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="entry-footer">
+          <p>© 2026 Prova Online - Área 61</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- TELA DA PROVA -->
+    <div id="examScreen" class="screen">
+      <div class="exam-container">
+        <!-- Header -->
+        <div class="exam-header">
+          <div class="header-left">
+            <h2><i class="fas fa-lock"></i> Prova Online</h2>
+            <p id="studentName"></p>
+          </div>
+          <div class="header-right">
+            <div class="time-display">
+              <p class="time-label">Horário</p>
+              <p id="currentTime" class="time-value">--:--:--</p>
+            </div>
+            <div class="timer-display">
+              <p class="time-label">Tempo Restante</p>
+              <p id="timeRemaining" class="time-value">30:00</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Instructions -->
+        <div class="instructions-box">
+          <h3><i class="fas fa-info-circle"></i> Instruções</h3>
+          <ul>
+            <li><i class="fas fa-ban"></i> Não minimize a janela ou mude de aba</li>
+            <li><i class="fas fa-ban"></i> Não pressione F5 ou atualize a página</li>
+            <li><i class="fas fa-ban"></i> Não clique fora da janela da prova</li>
+            <li><i class="fas fa-check-circle"></i> A prova será encerrada automaticamente em caso de violação</li>
+          </ul>
+        </div>
+
+        <!-- Questions -->
+        <div id="questionsContainer" class="questions-container"></div>
+
+        <!-- Submit Button -->
+        <div class="submit-section">
+          <div class="security-status">
+            <i class="fas fa-shield-alt"></i>
+            <span>Modo de segurança ativado</span>
+          </div>
+          <button id="submitBtn" class="btn btn-primary btn-large">
+            <i class="fas fa-paper-plane"></i> Enviar Prova
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- TELA DE RESULTADO -->
+    <div id="resultScreen" class="screen">
+      <div class="result-container">
+        <div class="result-card">
+          <div class="result-icon danger">
+            <i class="fas fa-lock"></i>
+          </div>
+          <h2>Prova Encerrada</h2>
+          <p id="resultReason" class="result-reason"></p>
+
+          <div class="result-info">
+            <p><strong>Aluno:</strong> <span id="resultName"></span></p>
+            <p><strong>CPF:</strong> <span id="resultCPF"></span></p>
+          </div>
+
+          <div class="alert alert-warning">
+            <i class="fas fa-exclamation-triangle"></i>
+            <span>Se acredita que isso é um erro, entre em contato com o administrador.</span>
+          </div>
+
+          <button id="retryBtn" class="btn btn-secondary btn-large">
+            <i class="fas fa-sync-alt"></i> Voltar à Entrada
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ADMIN MODAL -->
+  <div id="adminModal" class="modal-overlay" aria-hidden="true">
+    <div class="modal-panel" role="dialog" aria-modal="true" aria-label="Painel do Administrador">
+      <div class="modal-header">
+        <div class="modal-title">
+          <i class="fas fa-user-shield"></i>
+          <span>Painel do Administrador</span>
+        </div>
+        <button id="adminModalClose" class="modal-close" type="button" aria-label="Fechar">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <!-- LOGIN (ADMIN) -->
+        <div id="adminLoginScreen" class="admin-view active">
+          <form id="adminAuthForm" class="form-container">
+            <h2 class="section-title"><i class="fas fa-lock"></i> Autenticação</h2>
+
+            <div class="form-group full">
+              <label for="adminEmail">Email</label>
+              <input type="email" id="adminEmail" required placeholder="admin@exemplo.com">
+            </div>
+
+            <div class="form-group full">
+              <label for="adminPassword">Senha</label>
+              <input type="password" id="adminPassword" required placeholder="••••••••••">
+            </div>
+
+            <div id="adminAuthMsg" class="message-box"></div>
+
+            <button type="submit" class="btn btn-primary btn-large">
+              <i class="fas fa-sign-in-alt"></i> Entrar
+            </button>
+
+            <p class="muted-note">
+              * Somente administradores podem liberar a prova e ver o ranking detalhado.
+            </p>
+          </form>
+        </div>
+
+        <!-- DASHBOARD (ADMIN) -->
+        <div id="adminScreen" class="admin-view">
+          <div class="admin-header-inline">
+            <div class="admin-header-left">
+              <div class="admin-badge"><i class="fas fa-shield-halved"></i> Admin autenticado</div>
+              <div class="muted-note" style="margin-top:6px">UID: <code id="adminUid">--</code></div>
+            </div>
+            <button id="adminLogoutBtn" class="btn btn-secondary">
+              <i class="fas fa-sign-out-alt"></i> Sair
+            </button>
+          </div>
+
+          <div class="admin-content">
+
+            <!-- Liberar Prova (geral) -->
+            <div class="admin-section">
+              <h2><i class="fas fa-toggle-on"></i> Liberação da Prova (Geral)</h2>
+              <div class="release-status">
+                <div class="status-indicator">
+                  <div id="adminStatusDot" class="status-dot"></div>
+                  <div>
+                    <p id="adminStatusLabel" class="status-label"></p>
+                    <p id="adminStatusDesc" class="status-desc"></p>
+                  </div>
+                </div>
+                <button id="adminToggleReleaseBtn" class="btn btn-primary">
+                  <span id="adminToggleText">Liberar</span>
+                </button>
+              </div>
+              <div id="adminReleaseMsg" class="message-box"></div>
+            </div>
+
+            <!-- Cadastros pendentes -->
+            <div class="admin-section">
+              <h2><i class="fas fa-user-clock"></i> Cadastros Pendentes</h2>
+              <div class="admin-search">
+                <i class="fas fa-search"></i>
+                <input id="adminSearchPending" type="text" placeholder="Buscar por nome ou CPF...">
+              </div>
+              <div id="adminPendingList" class="admin-list"></div>
+            </div>
+
+            <!-- Bloqueados -->
+            <div class="admin-section">
+              <h2><i class="fas fa-user-slash"></i> Alunos Bloqueados</h2>
+              <div class="admin-search">
+                <i class="fas fa-search"></i>
+                <input id="adminSearchBlocked" type="text" placeholder="Buscar por nome ou CPF...">
+              </div>
+              <div id="adminBlockedList" class="admin-list"></div>
+            </div>
+            
+
+            <section class="admin-section">
+            <div class="section-header">
+              <h2><i class="fas fa-file-alt"></i> Relatório de Aprovados</h2>
+              <button class="btn btn-secondary" onclick="loadAdminReport()">
+                <i class="fas fa-sync-alt"></i> Atualizar Relatório
+              </button>
+            </div>
+            <div id="adminReportList" class="report-container">
+              </div>
+          </section>
+
+
+
+            <!-- Ranking (só admin) -->
+            <div class="admin-section">
+              <div class="section-row">
+                <h2><i class="fas fa-ranking-star"></i> Ranking</h2>
+                <button id="adminRefreshRankingBtn" class="btn btn-secondary">
+                  <i class="fas fa-rotate"></i> Atualizar
+                </button>
+              </div>
+
+              <div class="ranking-controls">
+                <div class="form-group">
+                  <label for="rankingSort">Ordenar por</label>
+                  <select id="rankingSort">
+                    <option value="score_time_date">Acertos (desc) + Tempo (asc) + Hora (asc)</option>
+                    <option value="score_date_time">Acertos (desc) + Hora (asc) + Tempo (asc)</option>
+                    <option value="date">Hora de finalização (asc)</option>
+                    <option value="time">Tempo gasto (asc)</option>
+                    <option value="score">Acertos (desc)</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label for="rankingCongregation">Congregação</label>
+                  <select id="rankingCongregation">
+                    <option value="all">Todas</option>
+                    <option value="Comportas">Comportas</option>
+                    <option value="Lagoa 1">Lagoa 1</option>
+                    <option value="Lagoa 2">Lagoa 2</option>
+                    <option value="Engenho">Engenho</option>
+                    <option value="Alto do Céu">Alto do Céu</option>
+                    <option value="Acaraú">Acaraú</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label for="rankingSearch">Buscar</label>
+                  <input id="rankingSearch" type="text" placeholder="Nome ou CPF">
+                </div>
+              </div>
+
+              <div id="rankingMsg" class="message-box"></div>
+
+              <div class="ranking-table-wrap">
+                <table class="ranking-table">
+                  <thead>
+                    <tr>
+                      <th>#</th>
+                      <th>Nome</th>
+                      <th>CPF</th>
+                      <th>Congregação</th>
+                      <th>Acertos</th>
+                      <th>Tempo</th>
+                      <th>Finalizou</th>
+                      <th>Quais acertou</th>
+                    </tr>
+                  </thead>
+                  <tbody id="rankingTbody">
+                    <tr><td colspan="8" class="muted-cell">Sem dados ainda.</td></tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <p class="muted-note">
+                * Observação: essas informações (acertos e questões corretas) <strong>não aparecem para o aluno</strong>.
+              </p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Scripts -->
+
+  <!-- Scripts -->
+<!-- Firebase (compat) - TEM QUE VIR PRIMEIRO -->
+<script defer src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script defer src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+<script defer src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+
+<script defer src="config.js"></script>
+<script defer src="app.js"></script>
+</body>
+</html>
