@@ -29,10 +29,6 @@ Sistema desenvolvido para a gestão e aplicação de exames online com foco em s
 3. Ative o **Realtime Database** e **Email/Password Auth** no console do Firebase.
 4. Defina as regras de segurança conforme o arquivo `FIREBASE_SETUP.md`.
 
-## 📸 Screenshots
-
-*(Dica: Adicione aqui prints da tela inicial do Simpósio e do painel administrativo para valorizar o projeto)*
-
 ## 📄 Licença
 
 Este projeto foi desenvolvido para o grupo **Área 61**. Sinta-se à vontade para usar como base para seus próprios sistemas de avaliação.
